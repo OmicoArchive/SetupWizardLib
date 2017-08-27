@@ -1,0 +1,71 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.0-beta3'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    COMPILE_SDK_VERSION = 26
+    BUILD_TOOLS_VERSION = "26.0.1"
+    TARGET_SDK_VERSION = COMPILE_SDK_VERSION
+    VERSION_CODE = getVersionCode()
+    VERSION_NAME = getVersionName()
+
+    ANDROID_SUPPORT_LIBRARY_VERSION = "26.0.0"
+
+    setupwizardlib = [
+            MIN_SDK_VERSION: 19
+    ]
+
+    setupwizardlibcompat = [
+            MIN_SDK_VERSION: 14
+    ]
+
+    BINTRAY_REPO = 'SetupWizardLib'
+
+    SITE_URL = 'https://github.com/Omico/SetupWizardLib'
+    GIT_URL = 'https://github.com/Omico/SetupWizardLib.git'
+
+    GROUP = 'me.omico.aosp-part'
+    POM_PACKAGING = 'aar'
+
+    POM_DESCRIPTION = 'Setup Wizard library part from AOSP'
+
+    POM_LICENCE = ['Apache-2.0']
+    POM_LICENCE_NAME = 'The Apache Software License, Version 2.0'
+    POM_LICENCE_URL = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    POM_LICENCE_DIST = 'repo'
+
+    POM_DEVELOPER_ID = 'omico'
+    POM_DEVELOPER_NAME = 'Omico Yuwen'
+    POM_DEVELOPER_EMAIL = 'omico@qq.com'
+}
+
+static String readCommand(String cmd) {
+    return cmd.execute().text.trim()
+}
+
+static int getVersionCode() {
+    return readCommand('git rev-list HEAD --count').toInteger()
+}
+
+static String getVersionName() {
+    return readCommand('git describe --tags --dirty')
+}
