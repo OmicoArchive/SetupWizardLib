@@ -1,5 +1,29 @@
 # SetupWizardLib
 
+## Getting started 入门
+
+### Add the dependency
+
+#### Please add this, if you want to support API 14 +
+
+```
+dependencies {
+    implementation 'me.omico.aosp-part:setup-wizard-lib-compat:0.1.0'
+}
+```
+
+#### Please add this, if you just want to support API 23 +
+
+```
+dependencies {
+    implementation 'me.omico.aosp-part:setup-wizard-lib:0.1.0'
+}
+```
+
+## Usage 用法
+
+Please watch [CurrentActivity](https://github.com/Omico/CurrentActivity)
+
 ## License 许可证
 
 [![license](https://img.shields.io/github/license/Omico/SetupWizardLib.svg?style=flat-square)](https://github.com/Omico/SetupWizardLib/blob/master/LICENSE)
