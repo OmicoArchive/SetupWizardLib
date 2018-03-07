@@ -2,18 +2,12 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion COMPILE_SDK_VERSION
-    buildToolsVersion BUILD_TOOLS_VERSION
     defaultConfig {
         minSdkVersion setupwizardlibcompat.MIN_SDK_VERSION
-        targetSdkVersion TARGET_SDK_VERSION
-        versionCode VERSION_CODE
-        versionName VERSION_NAME
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt')
-        }
+    // TODO replace with https://issuetracker.google.com/issues/72050365 once released.
+    libraryVariants.all {
+        it.generateBuildConfig.enabled = false
     }
     sourceSets {
         main {
@@ -22,11 +16,11 @@ android {
             java.srcDirs += rootProject.file('main/src')
             res.srcDirs += rootProject.file('main/res')
 
-            java.srcDirs += rootProject.file('eclair-mr1/src')
-            res.srcDirs += rootProject.file('eclair-mr1/res')
+            java.srcDirs += rootProject.file('gingerbread/src')
+            res.srcDirs += rootProject.file('gingerbread/res')
 
-            java.srcDirs += rootProject.file('full-support/src')
-            res.srcDirs += rootProject.file('full-support/res')
+            java.srcDirs += rootProject.file('recyclerview/src')
+            res.srcDirs += rootProject.file('recyclerview/res')
         }
     }
     lintOptions {
@@ -36,6 +30,9 @@ android {
 
 dependencies {
     implementation "com.android.support:appcompat-v7:$ANDROID_SUPPORT_LIBRARY_VERSION"
+    implementation "com.android.support:support-annotations:$ANDROID_SUPPORT_LIBRARY_VERSION"
+    implementation "com.android.support:support-compat:$ANDROID_SUPPORT_LIBRARY_VERSION"
+    implementation "com.android.support:support-core-ui:$ANDROID_SUPPORT_LIBRARY_VERSION"
     implementation "com.android.support:recyclerview-v7:$ANDROID_SUPPORT_LIBRARY_VERSION"
 }
 
